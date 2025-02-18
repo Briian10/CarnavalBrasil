@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carnaval de Brasil - La Fiesta Más Grande del Mundo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8f2280;
+            --secondary: #FFD700;
+            --accent: #4CAF50;
+            --text: #333333;
+            --light: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        /* Header Styles */
+        .header {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--light);
+    }
+
+    #video-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Asegura que el video cubra toda el área */
+        z-index: -1; /* Mantiene el video en el fondo */
+    }
+    body {
+            margin: 0;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        audio {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #009c3b, #fcdd09, #0038a8);
+            border: 3px solid #ffcc00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: #f5f5f5;
+            border-radius: 6px;
+        }
+
+        audio::-webkit-media-controls-play-button {
+            background-color: #0038a8;
+        }
+
+        audio::-webkit-media-controls-volume-slider {
+            background-color: #009c3b;
+        }
+
+    .header h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: fadeIn 2s ease-in;
+    }
+
+    .header p {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: transparent;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav.scrolled {
+            background-color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Timeline */
+        .historia-section {
+    padding: 5rem 2rem;
+    background: #ffffff;
+    color: #333;
+}
+
+.section-title h2 {
+    color: #8f2280;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 3rem;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #8f2280, #ff9100);
+}
+
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #8f2280, #ff9100, #00c853);
+    transform: translateX(-50%);
+}
+
+.timeline-event {
+    display: flex;
+    justify-content: flex-end;
+    padding: 2rem 0;
+    width: 50%;
+    position: relative;
+}
+
+.timeline-event:nth-child(even) {
+    margin-left: auto;
+    justify-content: flex-start;
+}
+
+.timeline-content {
+    width: calc(100% - 50px);
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(143, 34, 128, 0.05), rgba(255, 145, 0, 0.05));
+    border: 2px solid rgba(143, 34, 128, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(143, 34, 128, 0.1);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: #8f2280;
+    background: linear-gradient(135deg, rgba(143, 34, 128, 0.08), rgba(255, 145, 0, 0.08));
+}
+
+.timeline-event:nth-child(odd) .timeline-content {
+    margin-right: 50px;
+}
+
+.timeline-event:nth-child(even) .timeline-content {
+    margin-left: 50px;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: #8f2280;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    transition: all 0.3s ease;
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px rgba(143, 34, 128, 0.3);
+}
+
+.timeline-event:nth-child(odd) .timeline-dot {
+    right: -10px;
+}
+
+.timeline-event:nth-child(even) .timeline-dot {
+    left: -10px;
+}
+
+.timeline-content:hover + .timeline-dot {
+    background: #ff9100;
+    transform: translateY(-50%) scale(1.3);
+    box-shadow: 0 0 0 3px rgba(255, 145, 0, 0.3);
+}
+
+.timeline-year {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #8f2280;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.timeline-icon {
+    font-size: 2rem;
+    color: #ff9100;
+    filter: drop-shadow(0 2px 4px rgba(255, 145, 0, 0.3));
+}
+
+.timeline-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #8f2280;
+    font-weight: 600;
+}
+
+.timeline-description {
+    line-height: 1.6;
+    color: #555;
+}
+
+.timeline-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 1rem 0;
+    border: 3px solid rgba(143, 34, 128, 0.1);
+    transition: all 0.3s ease;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.timeline-content:hover .timeline-image {
+    border-color: #8f2280;
+}
+
+.timeline-content:hover .timeline-image img {
+    transform: scale(1.1);
+}
+
+/* Decorative elements */
+.carnival-decoration {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.1;
+    color: #8f2280;
+}
+
+.decoration-1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-15deg);
+}
+
+.decoration-2 {
+    bottom: 10%;
+    right: 5%;
+    transform: rotate(15deg);
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 0;
+    }
+    
+    .timeline-event {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .timeline-event:nth-child(even) {
+        justify-content: flex-start;
+    }
+    
+    .timeline-content {
+        width: calc(100% - 50px);
+        margin-left: 50px !important;
+    }
+    
+    .timeline-dot {
+        left: -10px !important;
+    }
+}
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .evento-card {
+            background: var(--light);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .evento-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .evento-imagen {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .evento-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .evento-card:hover .evento-imagen img {
+            transform: scale(1.1);
+        }
+
+        .evento-contenido {
+            padding: 1.5rem;
+        }
+
+        .evento-fecha {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .evento-titulo {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .evento-descripcion {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .evento-boton {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+        }
+
+        .evento-boton:hover {
+            background: var(--dark);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #413b40;
+            color: var(--light);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            
+        }
+
+        .footer-section {
+            padding: 1rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+
+            .footer-links a {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#historia">Historia</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#eventos">Eventos</a></li>
+        </ul>
+    </nav>
+
+    <header class="header" id="inicio">
+        <!-- Video como fondo -->
+        <video autoplay muted loop id="video-background">
+            <source src="hhhh.mp4" type="video/mp4">
+            Tu navegador no soporta el formato de video.
+        </video>
+       <audio controls>
+        <source src="zamba.mp3" type="audio/mpeg">
+        Tu navegador no soporta la etiqueta de audio.
+    </audio>
+        <h1 data-aos="fade-up">Carnaval de Brasil</h1>
+        <p data-aos="fade-up" data-aos-delay="200">La fiesta más grande y colorida del mundo</p>
+    </header>
+
+    <section id="historia" class="historia-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Historia del Carnaval</h2>
+        </div>
+
+        <div class="carnival-decoration decoration-1">
+            <i class="fas fa-mask"></i>
+        </div>
+        <div class="carnival-decoration decoration-2">
+            <i class="fas fa-music"></i>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            
+            <div class="timeline-event" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-year">
+                        <i class="fas fa-crown timeline-icon"></i>
+                        1723
+                    </div>
+                    <h3 class="timeline-title">Orígenes Portugueses</h3>
+                    <div class="timeline-image">
+                        <img src="bbb.jpg" alt="Orígenes del Carnaval">
+                    </div>
+                    <p class="timeline-description">
+                        Los primeros registros del carnaval en Brasil datan del período colonial, cuando los portugueses introdujeron el "Entrudo", una celebración que incluía juegos con agua y harina.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+    
+            <div class="timeline-event" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-year">
+                        <i class="fas fa-music timeline-icon"></i>
+                        1840
+                    </div>
+                    <h3 class="timeline-title">Los Primeros Bailes de Máscaras</h3>
+                    <div class="timeline-image">
+                        <img src="ccc.jpg" alt="Bailes de Máscaras">
+                    </div>
+                    <p class="timeline-description">
+                        Se celebra el primer baile de máscaras en Río de Janeiro, inspirado en los carnavales europeos, marcando el inicio de una nueva era en la celebración.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+    
+            <div class="timeline-event" data-aos="fade-right">
+                <div class="timeline-content">
+                    <div class="timeline-year">
+                        <i class="fas fa-drum timeline-icon"></i>
+                        1917
+                    </div>
+                    <h3 class="timeline-title">Nacimiento de la Samba</h3>
+                    <div class="timeline-image">
+                        <img src="aaa.jpg" alt="Nacimiento de la Samba">
+                    </div>
+                    <p class="timeline-description">
+                        La primera samba grabada, "Pelo Telefone", marca el inicio de la transformación del carnaval en el espectáculo musical que conocemos hoy.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+    
+            <div class="timeline-event" data-aos="fade-left">
+                <div class="timeline-content">
+                    <div class="timeline-year">
+                        <i class="fas fa-star timeline-icon"></i>
+                        1984
+                    </div>
+                    <h3 class="timeline-title">Inauguración del Sambódromo</h3>
+                    <div class="timeline-image">
+                        <img src="ppp.jpg" alt="Sambódromo">
+                    </div>
+                    <p class="timeline-description">
+                        Se inaugura el Sambódromo de Río de Janeiro, diseñado por Oscar Niemeyer, consolidando el desfile de las escuelas de samba como el evento principal del carnaval.
+                    </p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria">
+        <h2 class="section-title" data-aos="fade-up">Galería de Imágenes</h2>
+        <div class="gallery">
+            <div class="gallery-item" data-aos="zoom-in">
+                <img src="/qqq.jpg" alt="Carnaval 1">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+                <img src="/carna.jpg" alt="Carnaval 2">
+            </div>
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                <img src="/ttt.jpg" alt="Carnaval 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="eventos">
+        <h2 class="section-title" data-aos="fade-up">Eventos Próximos</h2>
+        <div class="eventos-grid">
+            <div class="evento-card" data-aos="fade-up">
+                <div class="evento-imagen">
+                    <img src="/www.jpg" alt="Desfile de Carnaval">
+                </div>
+                <div class="evento-contenido">
+                    <div class="evento-fecha">
+                        <i class="fas fa-calendar"></i>
+                        10 Feb 2025
+                    </div>
+                    <h3 class="evento-titulo">Gran Desfile de Sambódromo</h3>
+                    <p class="evento-descripcion">Disfruta del espectacular desfile de las mejores escuelas de samba de Río de Janeiro.</p>
+                    <a href="#" class="evento-boton">Más información</a>
+                </div>
+            </div>
+
+            <div class="evento-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="evento-imagen">
+                    <img src="preto.jpg" alt="Bloco de Rua">
+                </div>
+                <div class="evento-contenido">
+                    <div class="evento-fecha">
+                        <i class="fas fa-calendar"></i>
+                        12 Feb 2025
+                    </div>
+                    <h3 class="evento-titulo">Bloco da Preta</h3>
+                    <p class="evento-descripcion">Uno de los blocos más populares de Río, con música en vivo y mucha energía.</p>
+                    <a href="#" class="evento-boton">Más información</a>
+                </div>
+            </div>
+
+            <div class="evento-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="evento-imagen">
+                    <img src="rrr.jpg" alt="Baile de Carnaval">
+                </div>
+                <div class="evento-contenido">
+                    <div class="evento-fecha">
+                        <i class="fas fa-calendar"></i>
+                        15 Feb 2025
+                    </div>
+                    <h3 class="evento-titulo">Baile do Copacabana Palace</h3>
+                    <p class="evento-descripcion">El baile de gala más exclusivo del Carnaval en el histórico hotel.</p>
+                    <a href="#" class="evento-boton">Más información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre el Carnaval</h3>
+                <p>El Carnaval de Brasil es la celebración más grande del mundo, reuniendo millones de personas en una explosión de color, música y alegría.</p>
+                <div class="footer-social">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#inicio"><i class="fas fa-chevron-right"></i> Inicio</a></li>
+                    <li><a href="#historia"><i class="fas fa-chevron-right"></i> Historia</a></li>
+                    <li><a href="#galeria"><i class="fas fa-chevron-right"></i> Galería</a></li>
+                    <li><a href="#eventos"><i class="fas fa-chevron-right"></i> Eventos</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-phone"></i> +55 21 1234-5678</li>
+                    <li><i class="fas fa-envelope"></i> info@carnavalbrasil.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Río de Janeiro, Brasil</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Carnaval de Brasil. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Inicializar AOS (Animate On Scroll)
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Cambiar el fondo de la navegación al hacer scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
